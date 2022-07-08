@@ -3,19 +3,24 @@ import { useParams, useNavigate } from "react-router-dom";
 import { nanoid } from 'nanoid';
 import backlogo from '../assets/shared/icon-arrow-left.svg'
 import commentlogo from '../assets/shared/icon-comments.svg'
-
+import EachComment from './EachComment';
 import upvotesSvg from '../assets/shared/icon-arrow-up.svg'
 
 import '../styles/commentthread.css'
 
 import userImg from '../assets/user-images/image-anne.jpg'
 
+import { Link } from 'react-router-dom';
+
 const CommentThread = ({ getComments }) => {
     let navigate = useNavigate();
     let params = useParams();
     let id = params.commentID
 
+
+
     let comment = getComments(id)
+    console.log(comment)
 
 
     let commentsCount;
@@ -127,18 +132,25 @@ const CommentThread = ({ getComments }) => {
             {commentsCount >= 1 &&
 
                 commentsArr.map(item => {
+                    let image = item.user.image
+                    console.log(image)
+
                     return (
                         <div
                             className='comments-reply-thread'
                             key={nanoid()}>
 
                             <div className='reply-author-photo'>
-                                <img src={userImg} />
+
+                                <img src={image} />
                             </div>
 
                             <div className='reply-author-content'>
 
-                                <p className="reply-user-name">{item.user.name} </p>
+                                <div class="user-link">
+                                    <p className="reply-user-name">{item.user.name} </p>
+                                    <Link to="/">Reply</Link>
+                                </div>
                                 <p className='reply-user-handle'>@ {item.user.username} </p>
                                 <p>{item.content}</p>
 
