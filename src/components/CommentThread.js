@@ -17,14 +17,9 @@ const CommentThread = ({ getComments }) => {
     let params = useParams();
     let id = params.commentID
 
-
-
     let comment = getComments(id)
-    console.log(comment)
-
 
     let commentsCount;
-
     let commentsArr = comment.comments
 
 
@@ -33,62 +28,6 @@ const CommentThread = ({ getComments }) => {
     } else {
         commentsCount = 0
     }
-
-
-
-    const validReplies = (commentArr) => {
-
-        let validCommentReplies;
-
-        for (let item of commentsArr) {
-
-            if (item.replies) {
-                validCommentReplies = item.replies
-            }
-
-            else {
-                console.log("no replies to this comment")
-            }
-        }
-
-        return (validCommentReplies.map(item => (
-            <div
-                key={item.replyingTo}
-                className='each-comment-reply'>
-
-                <p className="reply-user-name">{item.user.name}</p>
-                <p className='reply-user-handle'>@{item.user.username}</p>
-                <p> <span> @{item.replyingTo} </span> {item.content}</p>
-
-            </div>
-        )))
-    }
-
-    // const renderComments = commentsArr.map(item => {
-    //     return (
-    //         <div
-    //             className='comments-reply-thread'
-    //             key={nanoid()}>
-
-    //             <div className='reply-author-photo'>
-    //                 <img src={userImg} />
-    //             </div>
-
-    //             <div className='reply-author-content'>
-
-    //                 <p className="reply-user-name">{item.user.name} </p>
-    //                 <p className='reply-user-handle'>@ {item.user.username} </p>
-    //                 <p>{item.content}</p>
-
-    //                 <br />
-
-    //                 {item.replies && validReplies(item.replies)}
-
-    //             </div>
-    //         </div>
-    //     )
-    // })
-
 
     return (
 
@@ -131,37 +70,13 @@ const CommentThread = ({ getComments }) => {
 
             {commentsCount >= 1 &&
 
-                commentsArr.map(item => {
-                    let image = item.user.image
-                    console.log(image)
-
-                    return (
-                        <div
-                            className='comments-reply-thread'
-                            key={nanoid()}>
-
-                            <div className='reply-author-photo'>
-
-                                <img src={image} />
-                            </div>
-
-                            <div className='reply-author-content'>
-
-                                <div class="user-link">
-                                    <p className="reply-user-name">{item.user.name} </p>
-                                    <Link to="/">Reply</Link>
-                                </div>
-                                <p className='reply-user-handle'>@ {item.user.username} </p>
-                                <p>{item.content}</p>
-
-                                <br />
-
-                                {item.replies && validReplies(item.replies)}
-
-                            </div>
-                        </div>
-                    )
-                })}
+                commentsArr.map(item => (
+                    <EachComment
+                        commentsArr={commentsArr}
+                        key={nanoid()}
+                        item={item} />
+                )
+                )}
 
 
         </div>
