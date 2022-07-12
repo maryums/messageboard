@@ -42,25 +42,3 @@
     border-radius: 50%;;
 }
 
-.each-comment-reply {
-    margin: 25px 15px;
-}
-
-.each-comment-reply span {
-color: #AD1FEA;
-font-weight: 700;
-}
-
-.reply-user-name {
-    color: #3A4374;
-    font-weight: 700;
-}
-
-.reply-user-handle {
-    margin-bottom: 7px;
-}
-
-.user-link {
-    display: flex;
-    justify-content: space-between;
-}

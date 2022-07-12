@@ -2,7 +2,7 @@ import React from 'react'
 import FilterFeedback from './FilterFeedback'
 import FeedbackBoard from './FeedbackBoard'
 
-const Home = ({ setFilterTerm, categories, saveFormData, setUpvotesFilter, filteredData, }) => {
+const Home = ({ setSaveNewData, setFilterTerm, data, setData, categories, saveFormData, setUpvotesFilter, filteredData, }) => {
     return (
         <div className="app-container">
 
@@ -12,6 +12,9 @@ const Home = ({ setFilterTerm, categories, saveFormData, setUpvotesFilter, filte
             />
 
             <FeedbackBoard
+                setSaveNewData={setSaveNewData}
+                data={data}
+                setData={setData}
                 saveFormData={saveFormData}
                 setUpvotesFilter={setUpvotesFilter}
                 filteredData={filteredData}

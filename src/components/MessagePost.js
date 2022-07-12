@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/messagepost.css'
 import commentlogo from '../assets/shared/icon-comments.svg'
 import upvotesSvg from '../assets/shared/icon-arrow-up.svg'
 import { Link, Outlet } from "react-router-dom";
 
 
-const MessagePost = ({ post }) => {
+const MessagePost = ({ setSaveNewData, post, data, setData }) => {
+
+
+    const handleUpVoteChange = (e, post) => {
+        e.preventDefault()
+        console.log("hi")
+        console.log(post)
+        const nextUpvotedPost = data.map(element => {
+            if (element.id === post.id) {
+                return { ...element, upvotes: element.upvotes + 1 }
+            } else {
+                return element
+            }
+        })
+        setData(nextUpvotedPost)
+        setSaveNewData(prevState => !prevState)
+
+    }
 
     let commentsCount;
     let commentsArr = (post.comments)
@@ -28,9 +45,17 @@ const MessagePost = ({ post }) => {
 
                     <div className='upvotes-container'>
                         <img
+                            onClick={(e) => handleUpVoteChange(e, post)}
                             alt={"upvotes"}
                             src={upvotesSvg} />
-                        {post.upvotes}
+                        <button
+                            className='upvote-button'
+                            onClick={(e) => {
+
+                                e.preventDefault()
+                                console.log("hi")
+                            }}
+                        > {post.upvotes} </button>
                     </div>
 
                     <div className='post-info-container'>

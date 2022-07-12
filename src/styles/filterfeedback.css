@@ -34,3 +34,10 @@
     color: #4661E6;
     font-weight: 600;
 }
+
+
+@media screen and (max-width: 768px) {
+    .search-category {
+        display: none;
+        }
+  }

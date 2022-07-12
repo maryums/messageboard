@@ -4,7 +4,7 @@ import Form from './Form'
 
 import MessageBoard from './MessageBoard'
 
-const FeedbackBoard = ({ filteredData, saveFormData, setUpvotesFilter }) => {
+const FeedbackBoard = ({ setSaveNewData, data, filteredData, setData, saveFormData, setUpvotesFilter }) => {
     const [showForm, setshowForm] = useState(false)
 
     const handleSelect = (input) => {
@@ -27,7 +27,7 @@ const FeedbackBoard = ({ filteredData, saveFormData, setUpvotesFilter }) => {
                 <div className='suggestions-sortedby'>
                     <h2> {filteredData.length} Suggestions</h2>
 
-                    <label htmlFor='upvotes'>Sort by: </label>
+                    <label htmlFor='upvotes'></label>
                     <select
                         name="upvotes"
                         id="upvotes"
@@ -71,6 +71,9 @@ const FeedbackBoard = ({ filteredData, saveFormData, setUpvotesFilter }) => {
             }
 
             <MessageBoard
+                setSaveNewData={setSaveNewData}
+                data={data}
+                setData={setData}
                 filteredData={filteredData}
             />
 

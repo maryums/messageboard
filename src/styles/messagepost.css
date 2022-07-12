@@ -81,3 +81,11 @@
     display: inline-block;
 
 }
+
+.upvotes-container button {
+border: none;
+}
+
+.upvotes-container img {
+
+}

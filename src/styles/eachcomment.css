@@ -1,0 +1,35 @@
+
+.each-comment-reply {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr  15fr;
+    grid-gap: 15px;
+    padding: 15px 15px ;
+    font-size: 13px;
+    margin: 17px 15px;
+}
+
+.each-comment-reply img {
+    width: 100%;
+    border-radius: 50%;;
+}
+
+
+.each-comment-reply span {
+    color: #AD1FEA;
+    font-weight: 700;
+    }
+    
+    .reply-user-name {
+        color: #3A4374;
+        font-weight: 700;
+    }
+    
+    .reply-user-handle {
+        margin-bottom: 7px;
+    }
+    
+    .user-link {
+        display: flex;
+        justify-content: space-between;
+    }

@@ -118,6 +118,9 @@ function App() {
       <Routes>
         <Route path="/" element={
           <Home
+            setSaveNewData={setSaveNewData}
+            data={data}
+            setData={setData}
             setFilterTerm={setFilterTerm}
             setUpvotesFilter={setUpvotesFilter}
             filteredData={filteredData}

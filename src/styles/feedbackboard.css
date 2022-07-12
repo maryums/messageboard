@@ -73,3 +73,20 @@
     border:0px;
     outline:0px;
 }
+
+
+@media screen and (max-width: 768px) {
+    .message-board-container {
+        margin: 0;
+    }
+  }
+
+  .grey-header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.frontend-header {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
