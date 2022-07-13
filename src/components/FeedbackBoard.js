@@ -4,7 +4,7 @@ import Form from './Form'
 
 import MessageBoard from './MessageBoard'
 
-const FeedbackBoard = ({ setSaveNewData, data, filteredData, setData, saveFormData, setUpvotesFilter }) => {
+const FeedbackBoard = ({ saveCommentReplies, setSaveNewData, data, filteredData, setData, saveFormData, setUpvotesFilter }) => {
     const [showForm, setshowForm] = useState(false)
 
     const handleSelect = (input) => {
@@ -71,6 +71,7 @@ const FeedbackBoard = ({ setSaveNewData, data, filteredData, setData, saveFormDa
             }
 
             <MessageBoard
+                saveCommentReplies={saveCommentReplies}
                 setSaveNewData={setSaveNewData}
                 data={data}
                 setData={setData}

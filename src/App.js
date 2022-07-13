@@ -1,4 +1,6 @@
 import react, { useState, useEffect } from 'react'
+import produce from 'immer'
+
 
 import fakeData from './FakeData'
 
@@ -16,6 +18,7 @@ function App() {
   const [filterTerm, setFilterTerm] = useState('all')
   const [upvotesFilter, setUpvotesFilter] = useState('')
   const [saveNewData, setSaveNewData] = useState(false)
+  const [eachCommentInput, seteachCommentInput] = useState("")
 
   const getComments = (id) => {
     return data.find(comment => comment.id.toString() === id)
@@ -25,6 +28,54 @@ function App() {
     setData([...data, request])
     setSaveNewData(prevState => !prevState)
   }
+
+  const saveCommentReplies = (reply, commentId, itemId) => {
+
+    // let newData = data.map((item) =>
+    //   item.id === originalCommentId
+    //     ? {
+    //       ...item,
+    //       comments: item.comments.map((comment) =>
+    //         comment === id
+    //           ? {
+    //             ...comment,
+    //             replies: [...comment.replies, reply]
+    //           } : comment
+    //       ),
+    //     }
+    //     : item
+    // )
+
+    // console.log(newData)
+
+    let fullComment = (data.find((item) => item.id === parseInt(itemId)))
+    let indexComment = data.indexOf(fullComment)
+
+    console.log(indexComment)
+
+    let fullReply = (fullComment.comments).find(comment => comment.id === parseInt(commentId))
+    let indexReply = (fullComment.comments).indexOf(fullReply)
+    console.log(indexReply)
+
+
+    if (!data[indexComment].comments[indexReply].replies) {
+      data[indexComment].comments[indexReply].replies = []
+    }
+
+
+
+    const nextState = produce(data, draftState => {
+
+      draftState[indexComment].comments[indexReply].replies.push(reply)
+
+
+    })
+
+    setData(nextState)
+    setSaveNewData(prevState => !prevState)
+
+  }
+
 
   let categoryArr = []
   let searchArr = data
@@ -118,6 +169,7 @@ function App() {
       <Routes>
         <Route path="/" element={
           <Home
+            saveCommentReplies={saveCommentReplies}
             setSaveNewData={setSaveNewData}
             data={data}
             setData={setData}
@@ -131,6 +183,9 @@ function App() {
         <Route path="form" element={<Form />} />
         <Route path=":commentID" element={
           <CommentThread
+            eachCommentInput={eachCommentInput}
+            seteachCommentInput={seteachCommentInput}
+            saveCommentReplies={saveCommentReplies}
             getComments={getComments} />
         }
         />

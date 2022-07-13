@@ -33,3 +33,25 @@
         display: flex;
         justify-content: space-between;
     }
+
+    .reply-form {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .reply-form textarea {
+        width: 80%;
+        font-size: 12px;
+        padding: 8px;
+        font-family: 'Jost', sans-serif;
+    }
+    
+    .reply-form button {
+        align-self:flex-start;
+    }
+
+
+    .user-link span:hover {
+        cursor: pointer;
+    }

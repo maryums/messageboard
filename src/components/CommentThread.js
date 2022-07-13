@@ -12,7 +12,7 @@ import userImg from '../assets/user-images/image-anne.jpg'
 
 import { Link } from 'react-router-dom';
 
-const CommentThread = ({ getComments }) => {
+const CommentThread = ({ eachCommentInput, seteachCommentInput, getComments, saveCommentReplies }) => {
     let navigate = useNavigate();
     let params = useParams();
     let id = params.commentID
@@ -72,8 +72,11 @@ const CommentThread = ({ getComments }) => {
 
                 commentsArr.map(item => (
                     <EachComment
+                        originalCommentId={id}
+                        eachCommentInput={eachCommentInput}
+                        seteachCommentInput={seteachCommentInput}
+                        saveCommentReplies={saveCommentReplies}
                         commentsArr={commentsArr}
-                        key={nanoid()}
                         item={item} />
                 )
                 )}

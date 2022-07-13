@@ -5,7 +5,7 @@ import upvotesSvg from '../assets/shared/icon-arrow-up.svg'
 import { Link, Outlet } from "react-router-dom";
 
 
-const MessagePost = ({ setSaveNewData, post, data, setData }) => {
+const MessagePost = ({ setSaveNewData, saveCommentReplies, post, data, setData }) => {
 
 
     const handleUpVoteChange = (e, post) => {
