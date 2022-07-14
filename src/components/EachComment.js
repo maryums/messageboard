@@ -10,18 +10,15 @@ const EachComment = ({ originalCommentId, eachCommentInput, seteachCommentInput,
 
     let image = item.user.image
 
-    if (!item.replies) {
-        item.replies = []
-    }
-
-    console.log(item.replies)
-
-
     const handleCommentReply = () => {
         setShowReply(prevState => !prevState)
     }
 
     const handleCommentReplySubmit = (username) => {
+
+        // if (!item.replies) {
+        //     item.replies = []
+        // }
 
         const newComments = {
             content: eachCommentInput,

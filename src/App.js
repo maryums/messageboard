@@ -19,61 +19,58 @@ function App() {
   const [upvotesFilter, setUpvotesFilter] = useState('')
   const [saveNewData, setSaveNewData] = useState(false)
   const [eachCommentInput, seteachCommentInput] = useState("")
+  const [addCommentInput, setAddCommentInput] = useState("")
+
 
   const getComments = (id) => {
     return data.find(comment => comment.id.toString() === id)
   }
+
+
 
   const saveFormData = (request) => {
     setData([...data, request])
     setSaveNewData(prevState => !prevState)
   }
 
-  const saveCommentReplies = (reply, commentId, itemId) => {
+  const saveNewCommentFormData = (request, id) => {
 
-    // let newData = data.map((item) =>
-    //   item.id === originalCommentId
-    //     ? {
-    //       ...item,
-    //       comments: item.comments.map((comment) =>
-    //         comment === id
-    //           ? {
-    //             ...comment,
-    //             replies: [...comment.replies, reply]
-    //           } : comment
-    //       ),
-    //     }
-    //     : item
-    // )
-
-    // console.log(newData)
-
-    let fullComment = (data.find((item) => item.id === parseInt(itemId)))
+    let fullComment = (data.find((item) => item.id === parseInt(id)))
     let indexComment = data.indexOf(fullComment)
-
-    console.log(indexComment)
-
-    let fullReply = (fullComment.comments).find(comment => comment.id === parseInt(commentId))
-    let indexReply = (fullComment.comments).indexOf(fullReply)
-    console.log(indexReply)
-
-
-    if (!data[indexComment].comments[indexReply].replies) {
-      data[indexComment].comments[indexReply].replies = []
-    }
 
 
 
     const nextState = produce(data, draftState => {
 
-      draftState[indexComment].comments[indexReply].replies.push(reply)
+      if (!draftState[indexComment].comments) {
+        draftState[indexComment].comments = []
+      }
 
-
+      draftState[indexComment].comments.push(request)
     })
 
     setData(nextState)
     setSaveNewData(prevState => !prevState)
 
+  }
+
+  const saveCommentReplies = (reply, commentId, itemId) => {
+
+    let fullComment = (data.find((item) => item.id === parseInt(itemId)))
+    let indexComment = data.indexOf(fullComment)
+
+    let fullReply = (fullComment.comments).find(comment => comment.id === parseInt(commentId))
+    let indexReply = (fullComment.comments).indexOf(fullReply)
+
+    const nextState = produce(data, draftState => {
+      if (!draftState[indexComment].comments[indexReply].replies) {
+        draftState[indexComment].comments[indexReply].replies = []
+      }
+      draftState[indexComment].comments[indexReply].replies.push(reply)
+    })
+
+    setData(nextState)
+    setSaveNewData(prevState => !prevState)
   }
 
 
@@ -183,6 +180,9 @@ function App() {
         <Route path="form" element={<Form />} />
         <Route path=":commentID" element={
           <CommentThread
+            saveNewCommentFormData={saveNewCommentFormData}
+            addCommentInput={addCommentInput}
+            setAddCommentInput={setAddCommentInput}
             eachCommentInput={eachCommentInput}
             seteachCommentInput={seteachCommentInput}
             saveCommentReplies={saveCommentReplies}

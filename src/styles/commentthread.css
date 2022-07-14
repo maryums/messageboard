@@ -42,3 +42,37 @@
     border-radius: 50%;;
 }
 
+.add-comment {
+    width: 90%;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.button-char-remaining {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-comment h3 {
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.add-comment button {
+    
+    padding: 10px;
+    background: #4661E6;
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    border: none;
+    border-radius: 8px;
+
+}
